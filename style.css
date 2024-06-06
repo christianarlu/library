@@ -14,7 +14,6 @@
 
 * {
     box-sizing: border-box;
-    padding: 0;
     text-align: center;
 }
 
@@ -52,32 +51,29 @@ body {
     }
 }
 
+dialog::backdrop {
+  background-color: hsla(34, 3%, 41%, 0.5);
+}
+
 /* Button Styles */
 
 button {
-  padding: 5px 10px;
+  padding: 8px 14px;
   font-size: clamp(1rem, 1.75vw, 1.45rem);
   background-color: var(--DARK-BLUE-COLOR, rgb(3, 3, 62));
   color: var(--WHITE-COLOR, white);
   font-weight: bold;
   border-radius: 7.2px;
   border: var(--DARK-BLUE-COLOR, rgb(3, 3, 62));
-
-  
 }
 
 button[data-open-modal] {
   margin-top: 16px;
 }
-
-
-
-
 /* Button Styles */
 
 
 /* Table styles */
-
 table {
     border-collapse: collapse;
     border: 1.25px solid rgb(9, 9, 9);
