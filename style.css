@@ -3,6 +3,10 @@
     --footer-background: rgb(236, 154, 154);
     --container-background: rgb(116, 219, 198);
     --text-color: rgb(36, 25, 25);
+
+    --DARK-BLUE-COLOR: rgb(13, 13, 204);
+    --WHITE-COLOR: white;
+
     font-size: 16px;
     font-family: Arial, Helvetica, sans-serif;
    
@@ -48,6 +52,28 @@ body {
     }
 }
 
+/* Button Styles */
+
+button {
+  padding: 5px 10px;
+  font-size: clamp(1rem, 1.75vw, 1.45rem);
+  background-color: var(--DARK-BLUE-COLOR, rgb(3, 3, 62));
+  color: var(--WHITE-COLOR, white);
+  font-weight: bold;
+  border-radius: 7.2px;
+  border: var(--DARK-BLUE-COLOR, rgb(3, 3, 62));
+
+  
+}
+
+button[data-open-modal] {
+  margin-top: 16px;
+}
+
+
+
+
+/* Button Styles */
 
 
 /* Table styles */
@@ -87,4 +113,4 @@ table {
     padding: 10px;
   }
   
-  
+/* Table styles */
