@@ -40,15 +40,37 @@
             </table>
 
             <div class="content-buttons">
-
                 <button data-open-modal>Add new book</button>
-
                 <dialog data-modal>
-                    <div>This is a modal</div>
-                    <button data-close-modal>Cancel</button>
-                    <button data-submit-modal>Submit</button>
-                </dialog>
+                    <form action="https://httpbin.org/post">
+                        <fieldset>
+                            <legend>Enter details about the new Book</legend>
+                            <div>
+                                <label for="title">Book title</label>
+                                <input type="text" id="title" name="title" placeholder="A Song of Ice and Fire">
+                            </div>
 
+                            <div>
+                                <label for="author">Author of the Book</label>
+                                <input type="text" id="author" name="author" placeholder="Jane Doe">
+                            </div>
+
+                            <div>
+                                <label for="pages">Number of pages</label>
+                                <input type="number" id="pages" name="pages" placeholder="156">
+                            </div>
+
+                            <fieldset>
+                                <legend>Have completed reading this book?</legend>
+                                <label for="read_status_radio_yes"><input type="radio" id="read_status_radio_yes" name="read" value="yes">Yes</label>
+                                <label for="read_status_radio_no"><input type="radio" id="read_status_radio_no" name="read" value="no">No</label>
+                            </fieldset>
+                        </fieldset>
+
+                        <button data-close-modal formmethod="dialog">Cancel</button>
+                        <button data-submit-modal>Submit</button>
+                    </form>
+                </dialog>
             </div>
 
         </main>
