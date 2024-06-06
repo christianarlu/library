@@ -13,11 +13,49 @@
             Project Library
         </header>
         <main class="content">
-            
+            <table>
+                <caption>Information about your book collection</caption>
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Author</th>
+                        <th>Pages</th>
+                        <th>Read</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>El Fili</td>
+                        <td>Jose Rizal</td>
+                        <td>2464</td>
+                        <td>true</td>
+                    </tr>
+                    <tr>
+                        <td>The Universe</td>
+                        <td>Jane Doe</td>
+                        <td>789</td>
+                        <td>false</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="content-buttons">
+
+                <button data-open-modal>New Book</button>
+
+                <dialog data-modal>
+                    <div>This is a modal</div>
+                    <button data-close-modal>Close</button>
+                </dialog>
+
+            </div>
+
         </main>
         <footer class="footer">
             <p>Copyright &#169; 2024</p>
         </footer>
+
+        
     </div>
 </body>
 </html>
