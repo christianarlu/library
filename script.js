@@ -25,8 +25,6 @@ function Book(title, author, pages, read) {
 //     return `${this.title} by ${this.author}, ${this.pages} pages, ${this.read}`
 // }
 
-
-
 // SUBMIT FUNCTION
 submit.addEventListener("click", (e) => {
     e.preventDefault();
@@ -65,8 +63,10 @@ function clearInputs() {
 // DISPLAY FUNCTION
 function displayBooks(myLibrary) {
     for (let i = counter; i < myLibrary.length; i++) {
+
         const newRow = document.createElement("tr");
         table.appendChild(newRow);
+
         for (let key in myLibrary[i]) {
             const newTd = document.createElement("td");
             newRow.appendChild(newTd)
@@ -75,6 +75,7 @@ function displayBooks(myLibrary) {
             newTd.appendChild(newText);
 
         }
+
         // CREATE DELETE BUTTON
         const delCell = document.createElement("td");
         const delButton = document.createElement("button");
@@ -85,10 +86,16 @@ function displayBooks(myLibrary) {
 
         // UPDATE GLOBAL COUNTER 
         counter = i;
+        newRow.setAttribute("data-index", counter);
     } 
 }
 
 displayBooks(myLibrary);
+
+function deleteBook() {
+
+}
+
 
 /* Dialog/Modal related stuff below */
 newBookButton.addEventListener("click", () => {
