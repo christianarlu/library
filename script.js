@@ -6,12 +6,15 @@ const book4 = new Book("Ibong Adarna", "Juan Carlos", 3714, "no");
 const myLibrary = [book1, book2, book3, book4];
 let counter = 0;
 
-const table = document.querySelector("table");
+const table = document.querySelector("table > tbody");
 const submit = document.querySelector(".submit");
 
 const modal = document.querySelector("[data-modal]");
 const newBookButton = document.querySelector("[data-open-modal]");
 const closeButton = document.querySelector("[data-close-modal]");
+
+let deleteRows = document.querySelectorAll("tr[data-index]");
+let deleteButtons = document.querySelectorAll(".delete-row");
 
 // BOOK CONSTRUCTOR FUNCTION
 function Book(title, author, pages, read) {
@@ -84,17 +87,65 @@ function updateTable(myLibrary) {
         delCell.appendChild(delButton);
         delButton.appendChild(delText);
 
-        // UPDATE GLOBAL COUNTER 
+        delButton.setAttribute("class", "delete-row");
+
+        updateNodelist()
+
+        // UPDATE GLOBAL COUNTER AND ADD DATA-INDEX ATTRIBUTE
         counter = i;
         newRow.setAttribute("data-index", counter);
+        delButton.setAttribute("data-index", counter);
     } 
 }
 
 updateTable(myLibrary);
 
-function deleteBook() {
+// DELETE BOOK EVENT LISTENER
+deleteButtons.forEach((button) => {
+    button.addEventListener("click", (e) => {
+        updateNodelist();
+        let index = e.target.getAttribute("data-index");
+        console.log(e.target);
+        if (deleteRows.length > 1) {
+            for (let row of deleteRows) {
+                if (row.getAttribute("data-index") === index) {
+                    row.remove();
+                }  
+            }
+        } else {
+            deleteRows[index].remove();
+        }
+        recountTableIndex();
+    })
+});
+
+// RECOUNT ROW INDEX
+function recountTableIndex() {
+    updateNodelist();
+    let length = deleteRows.length;
+    counter = length;
+    if (length > 1) {
+        for (let i = length - 1; i >= 0; i--) {
+            deleteRows[i].setAttribute("data-index", i);
+            deleteButtons[i].setAttribute("data-index", i);
+        }
+    } else {
+        deleteRows[0].setAttribute("data-index", 0);
+        deleteButtons[0].setAttribute("data-index", 0)
+    }
+
 
 }
+
+//UPDATE GLOBAL NODELISTS
+function updateNodelist() {
+    const updatedDelRows = document.querySelectorAll("tr[data-index]");
+    const updatedDelButtons = document.querySelectorAll(".delete-row");
+    deleteRows = updatedDelRows;
+    deleteButtons = updatedDelButtons;
+}
+
+
 
 
 /* Dialog/Modal related stuff below */
