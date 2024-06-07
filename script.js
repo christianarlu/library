@@ -1,8 +1,10 @@
-const book1 = new Book("Game of thrones", "George R.R. Martin", 1945, false);
-const book2 = new Book("Harry Potter", "JK Rowling", 1997, true);
-const book3 = new Book("Noli Me Tangere", "Jose P. Rizal", 1878, false);
+const book1 = new Book("Game of thrones", "George R.R. Martin", 1945, "yes");
+const book2 = new Book("Harry Potter", "JK Rowling", 1997, "no");
+const book3 = new Book("The Universe", "Don Pablo", 820, "yes");
+const book4 = new Book("Ibong Adarna", "Juan Carlos", 3714, "no");
 
-const myLibrary = [book1, book2];
+const myLibrary = [book1, book2, book3, book4];
+let counter = 0;
 
 const table = document.querySelector("table");
 const submit = document.querySelector(".submit");
@@ -37,7 +39,12 @@ submit.addEventListener("click", (e) => {
     let read = inputRadio.value;
 
     const book = new Book(title, author, pages, read);
-    addBook(book)
+    
+    myLibrary.push(book);
+    counter++;
+    displayBooks(myLibrary);
+    
+
     clearInputs();
     modal.close();
 });
@@ -55,32 +62,30 @@ function clearInputs() {
     }
 }
 
-// ADD BOOK FUNCTION
-function addBook(bookObj) {
-    myLibrary.push(bookObj);
-    const newRow = document.createElement("tr");
-    table.appendChild(newRow);
-    for (let key in bookObj) {
-        const newTd = document.createElement("td");
-        newRow.appendChild(newTd);
-        const newText = document.createTextNode(bookObj[key]);
-        newTd.appendChild(newText);
-    }
-}
-
 // DISPLAY FUNCTION
 function displayBooks(myLibrary) {
-    myLibrary.forEach((book) => {
+    for (let i = counter; i < myLibrary.length; i++) {
         const newRow = document.createElement("tr");
         table.appendChild(newRow);
-        for (let key in book) {
+        for (let key in myLibrary[i]) {
             const newTd = document.createElement("td");
             newRow.appendChild(newTd)
 
-            const newText = document.createTextNode(book[key]);
+            const newText = document.createTextNode(myLibrary[i][key]);
             newTd.appendChild(newText);
+
         }
-    });          
+        // CREATE DELETE BUTTON
+        const delCell = document.createElement("td");
+        const delButton = document.createElement("button");
+        const delText = document.createTextNode("Delete");
+        newRow.appendChild(delCell);
+        delCell.appendChild(delButton);
+        delButton.appendChild(delText);
+
+        // UPDATE GLOBAL COUNTER 
+        counter = i;
+    } 
 }
 
 displayBooks(myLibrary);
