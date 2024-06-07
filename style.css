@@ -54,9 +54,15 @@ dialog::backdrop {
   background-color: rgb(0 0 0 / .4);
 }
 
+form {
+  div, div + fieldset {
+    margin: 15px 0;
+  }
+}
+
 /* Button Styles */
 
-button {
+button, input[type="submit"] {
   padding: 8px 14px;
   font-size: clamp(1rem, 1.75vw, 1.45rem);
   background-color: var(--DARK-BLUE-COLOR, rgb(3, 3, 62));
@@ -64,7 +70,23 @@ button {
   font-weight: bold;
   border-radius: 7.2px;
   border: var(--DARK-BLUE-COLOR, rgb(3, 3, 62));
-  margin-top: 16px;
+  margin: 16px 8px 0 0;
+}
+
+button:focus,
+button:hover,
+input[type="submit"]:focus,
+input[type="submit"]:hover {
+  background-color: #49b3e4;
+  color: black;
+  cursor: pointer;
+}
+
+button:active,
+input[type="submit"]:active {
+  background-color: rgb(179, 108, 246);
+  transform: scale(1.1);
+  transition: all 0.3s linear;
 }
 
 /* Button Styles */

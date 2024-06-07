@@ -24,30 +24,18 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>El Fili</td>
-                        <td>Jose Rizal</td>
-                        <td>2464</td>
-                        <td>true</td>
-                    </tr>
-                    <tr>
-                        <td>The Universe</td>
-                        <td>Jane Doe</td>
-                        <td>789</td>
-                        <td>false</td>
-                    </tr>
                 </tbody>
             </table>
 
             <div class="content-buttons">
-                <button data-open-modal>Add new book</button>
+                <button data-open-modal>New book</button>
                 <dialog data-modal>
-                    <form action="https://httpbin.org/post">
+                    <form>
                         <fieldset>
                             <legend>Enter details about the new Book</legend>
                             <div>
                                 <label for="title">Book title</label>
-                                <input type="text" id="title" name="title" placeholder="A Song of Ice and Fire">
+                                <input type="text" id="title" name="title" placeholder="A Song of Ice and Fire" >
                             </div>
 
                             <div>
@@ -68,7 +56,7 @@
                         </fieldset>
 
                         <button data-close-modal formmethod="dialog">Cancel</button>
-                        <button data-submit-modal>Submit</button>
+                        <input type="submit" class="submit" formmethod="dialog">
                     </form>
                 </dialog>
             </div>
