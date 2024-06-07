@@ -40,7 +40,7 @@ submit.addEventListener("click", (e) => {
     
     myLibrary.push(book);
     counter++;
-    displayBooks(myLibrary);
+    updateTable(myLibrary);
     
 
     clearInputs();
@@ -60,8 +60,8 @@ function clearInputs() {
     }
 }
 
-// DISPLAY FUNCTION
-function displayBooks(myLibrary) {
+// UPDATE TABLE FUNCTION
+function updateTable(myLibrary) {
     for (let i = counter; i < myLibrary.length; i++) {
 
         const newRow = document.createElement("tr");
@@ -90,7 +90,7 @@ function displayBooks(myLibrary) {
     } 
 }
 
-displayBooks(myLibrary);
+updateTable(myLibrary);
 
 function deleteBook() {
 
