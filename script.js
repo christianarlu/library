@@ -1,9 +1,4 @@
-const book1 = new Book("Game of thrones", "George R.R. Martin", 1945, "yes");
-const book2 = new Book("Harry Potter", "JK Rowling", 1997, "no");
-const book3 = new Book("The Universe", "Don Pablo", 820, "yes");
-const book4 = new Book("Ibong Adarna", "Juan Carlos", 3714, "no");
-
-const myLibrary = [book1, book2, book3, book4];
+const myLibrary = [];
 let counter = 0;
 
 const table = document.querySelector("table > tbody");
@@ -24,10 +19,6 @@ function Book(title, author, pages, read) {
     this.read = read
 }
 
-// Book.prototype.info = function() {
-//     return `${this.title} by ${this.author}, ${this.pages} pages, ${this.read}`
-// }
-
 // SUBMIT FUNCTION
 submit.addEventListener("click", (e) => {
     e.preventDefault();
@@ -42,9 +33,7 @@ submit.addEventListener("click", (e) => {
     const book = new Book(title, author, pages, read);
     
     myLibrary.push(book);
-    counter++;
     updateTable(myLibrary);
-    
 
     clearInputs();
     modal.close();
@@ -65,59 +54,64 @@ function clearInputs() {
 
 // UPDATE TABLE FUNCTION
 function updateTable(myLibrary) {
-    for (let i = counter; i < myLibrary.length; i++) {
+   
+        for (let i = counter; i < myLibrary.length; i++) {
 
-        const newRow = document.createElement("tr");
-        table.appendChild(newRow);
+            const newRow = document.createElement("tr");
+            table.appendChild(newRow);
+    
+            for (let key in myLibrary[i]) {
+                const newTd = document.createElement("td");
+                newRow.appendChild(newTd)
+    
+                const newText = document.createTextNode(myLibrary[i][key]);
+                newTd.appendChild(newText);
+            }  
+               // ADD DELETE BUTTON
+                const delCell = document.createElement("td");
+                const delButton = document.createElement("button");
+                const delText = document.createTextNode("Delete");
+                
+                newRow.appendChild(delCell);
+                delCell.appendChild(delButton);
+                delButton.appendChild(delText);
 
-        for (let key in myLibrary[i]) {
-            const newTd = document.createElement("td");
-            newRow.appendChild(newTd)
+                delButton.setAttribute("class", "delete-row");
+                
+                // UPDATE GLOBAL NODE LISTS
+                updateNodelist();
 
-            const newText = document.createTextNode(myLibrary[i][key]);
-            newTd.appendChild(newText);
+                // UPDATE GLOBAL COUNTER AND ADD DATA-INDEX ATTRIBUTE
+                counter++;
+                newRow.setAttribute("data-index", counter);
+                delButton.setAttribute("data-index", counter);
 
-        }
+                // RECOUNT TABLE ROW INDEX
+                recountTableIndex();
 
-        // CREATE DELETE BUTTON
-        const delCell = document.createElement("td");
-        const delButton = document.createElement("button");
-        const delText = document.createTextNode("Delete");
-        newRow.appendChild(delCell);
-        delCell.appendChild(delButton);
-        delButton.appendChild(delText);
-
-        delButton.setAttribute("class", "delete-row");
-
-        updateNodelist()
-
-        // UPDATE GLOBAL COUNTER AND ADD DATA-INDEX ATTRIBUTE
-        counter = i;
-        newRow.setAttribute("data-index", counter);
-        delButton.setAttribute("data-index", counter);
-    } 
+                // ADD DELETE FUNCTION
+                addDeleteFunction(counter);
+        } 
 }
 
-updateTable(myLibrary);
-
 // DELETE BOOK EVENT LISTENER
-deleteButtons.forEach((button) => {
+function addDeleteFunction(counter) {
+    let index = --counter;
+    const button = document.querySelector(`button[data-index='${index}']`);
+    
     button.addEventListener("click", (e) => {
-        updateNodelist();
-        let index = e.target.getAttribute("data-index");
-        console.log(e.target);
-        if (deleteRows.length > 1) {
-            for (let row of deleteRows) {
-                if (row.getAttribute("data-index") === index) {
-                    row.remove();
-                }  
-            }
-        } else {
-            deleteRows[index].remove();
-        }
+        let updatedIndex = e.target.getAttribute("data-index");
+        deleteRows[updatedIndex].remove();
+        myLibrary.splice(updatedIndex, 1);
         recountTableIndex();
-    })
-});
+        updateNodelist();
+    });
+
+};
+
+// DELETE ROW FUNCTION
+
+
 
 // RECOUNT ROW INDEX
 function recountTableIndex() {
@@ -129,12 +123,12 @@ function recountTableIndex() {
             deleteRows[i].setAttribute("data-index", i);
             deleteButtons[i].setAttribute("data-index", i);
         }
-    } else {
+    } else if (length === 1) {
         deleteRows[0].setAttribute("data-index", 0);
-        deleteButtons[0].setAttribute("data-index", 0)
+        deleteButtons[0].setAttribute("data-index", 0);
+    } else {
+        console.log("Empty table");
     }
-
-
 }
 
 //UPDATE GLOBAL NODELISTS
@@ -144,9 +138,6 @@ function updateNodelist() {
     deleteRows = updatedDelRows;
     deleteButtons = updatedDelButtons;
 }
-
-
-
 
 /* Dialog/Modal related stuff below */
 newBookButton.addEventListener("click", () => {
@@ -169,3 +160,6 @@ modal.addEventListener("click", e => {
     }
 });
 
+// Book.prototype.info = function() {
+//     return `${this.title} by ${this.author}, ${this.pages} pages, ${this.read}`
+// }
