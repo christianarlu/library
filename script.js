@@ -63,9 +63,19 @@ function updateTable(myLibrary) {
             for (let key in myLibrary[i]) {
                 const newTd = document.createElement("td");
                 newRow.appendChild(newTd)
-    
+                
                 const newText = document.createTextNode(myLibrary[i][key]);
+
+                if (key === 'read') {
+                    const readButton = document.createElement('button');
+                    newTd.appendChild(readButton);
+                    readButton.appendChild(newText);
+                }
+
+                else {
                 newTd.appendChild(newText);
+                }
+                
             }  
                // ADD DELETE BUTTON
                 const delCell = document.createElement("td");
