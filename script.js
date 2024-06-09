@@ -134,6 +134,7 @@ function addToggleReadStatus(counter) {
     let index = --counter;
     const button = document.querySelector(`tr[data-index='${index}']>td>button[name="read-toggle"]`);
     button.addEventListener('click', (e) => {
+        let updatedIndex = e.target.parentNode.parentNode.getAttribute("data-index");
         if (e.target.getAttribute("class") === "green-background") {
             e.target.setAttribute("class", "red-background");
             e.target.textContent = "no";
@@ -141,6 +142,7 @@ function addToggleReadStatus(counter) {
             e.target.setAttribute("class", "green-background");
             e.target.textContent = "yes";
         }
+        myLibrary[updatedIndex]["read"] = e.target.textContent;
     });
 }
 
