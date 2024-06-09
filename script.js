@@ -70,8 +70,11 @@ function updateTable(myLibrary) {
                     const readButton = document.createElement('button');
                     newTd.appendChild(readButton);
                     readButton.appendChild(newText);
-                }
 
+                    newText.nodeValue === "yes" ? readButton.setAttribute("class", "green-background") : 
+                    readButton.setAttribute("class", "red-background");
+            
+                }
                 else {
                 newTd.appendChild(newText);
                 }
@@ -170,6 +173,11 @@ modal.addEventListener("click", e => {
     }
 });
 
-// Book.prototype.info = function() {
-//     return `${this.title} by ${this.author}, ${this.pages} pages, ${this.read}`
-// }
+
+/*
+
+Book.prototype.info = function() {
+     return `${this.title} by ${this.author}, ${this.pages} pages, ${this.read}`
+}
+
+*/

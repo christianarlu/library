@@ -6,6 +6,8 @@
 
     --DARK-BLUE-COLOR: rgb(13, 13, 204);
     --WHITE-COLOR: white;
+    --GREEN-COLOR: rgb(83, 191, 83);
+    --RED-COLOR: rgb(244, 89, 89);
 
     font-size: 16px;
     font-family: Arial, Helvetica, sans-serif;
@@ -87,6 +89,14 @@ input[type="submit"]:active {
   background-color: rgb(179, 108, 246);
   transform: scale(1.1);
   transition: all 0.3s linear;
+}
+
+button[class = "green-background"] {
+  background-color: var(--GREEN-COLOR, greenyellow);
+}
+
+button[class = "red-background"] {
+  background-color: var(--RED-COLOR, red)
 }
 
 /* Button Styles */
