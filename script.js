@@ -70,9 +70,13 @@ function updateTable(myLibrary) {
                     const readButton = document.createElement('button');
                     newTd.appendChild(readButton);
                     readButton.appendChild(newText);
+                    readButton.setAttribute("name", "read-toggle");
+                    
 
                     newText.nodeValue === "yes" ? readButton.setAttribute("class", "green-background") : 
                     readButton.setAttribute("class", "red-background");
+
+
             
                 }
                 else {
@@ -104,6 +108,9 @@ function updateTable(myLibrary) {
 
                 // ADD DELETE FUNCTION
                 addDeleteFunction(counter);
+
+                // ADD READ TOGGLE FUNCTION
+                addToggleReadStatus(counter);
         } 
 }
 
@@ -122,9 +129,20 @@ function addDeleteFunction(counter) {
 
 };
 
-// DELETE ROW FUNCTION
-
-
+// TOGGLE READ STATUS EVENT LISTENER
+function addToggleReadStatus(counter) {
+    let index = --counter;
+    const button = document.querySelector(`tr[data-index='${index}']>td>button[name="read-toggle"]`);
+    button.addEventListener('click', (e) => {
+        if (e.target.getAttribute("class") === "green-background") {
+            e.target.setAttribute("class", "red-background");
+            e.target.textContent = "no";
+        } else {
+            e.target.setAttribute("class", "green-background");
+            e.target.textContent = "yes";
+        }
+    });
+}
 
 // RECOUNT ROW INDEX
 function recountTableIndex() {
